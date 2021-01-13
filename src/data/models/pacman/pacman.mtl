@@ -1,0 +1,19 @@
+#
+## Alias OBJ Material File
+# Exported from SketchUp, (c) 2000-2012 Trimble Navigation Limited
+
+newmtl M_0046_Gold
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.964706 0.254902
+Ks 0.330000 0.330000 0.330000
+map_Kd M_0046_Gold.jpg
+newmtl M_0021_DarkRed
+Ka 0.000000 0.000000 0.000000
+Kd 0.545098 0.000000 0.000000
+Ks 0.330000 0.330000 0.330000
+map_Kd M_0021_DarkRed.jpg
+newmtl Color_D02
+Ka 0.000000 0.000000 0.000000
+Kd 1.000000 0.800000 0.196078
+Ks 0.330000 0.330000 0.330000
+map_Kd Color_D02.jpg
