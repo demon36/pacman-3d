@@ -4,11 +4,11 @@
 #include <vector>
 #include <string>
 #include <glm/glm.hpp>
-#include <gl/glew.h>
+#include <GL/glew.h>
 
 #include "TexturedModel.h"
-#include "GraphicsDevice\ShaderProgram.h"
-#include "Texture\texture.h"
+#include "GraphicsDevice/ShaderProgram.h"
+#include "Texture/texture.h"
 
 class ModelNode
 {

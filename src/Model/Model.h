@@ -3,7 +3,7 @@
 
 #include <glm/glm.hpp>
 #include <vector>
-#include <gl\glew.h>
+#include <GL/glew.h>
 class Model
 {
 	

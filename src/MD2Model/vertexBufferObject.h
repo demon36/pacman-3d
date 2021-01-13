@@ -1,7 +1,7 @@
 #ifndef vertexBufferObject_h__
 #define vertexBufferObject_h__
 
-#include "gl/glew.h"
+#include "GL/glew.h"
 #include <vector>
 /********************************
 

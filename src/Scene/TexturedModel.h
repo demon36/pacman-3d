@@ -3,10 +3,10 @@
 
 #include <glm/glm.hpp>
 #include <vector>
-#include <gl\glew.h>
-#include "Texture\texture.h"
-#include "GraphicsDevice\ShaderProgram.h"
-#include "Model\Model.h"
+#include "Texture/texture.h"
+#include "GraphicsDevice/ShaderProgram.h"
+#include "Model/Model.h"
+#include <GL/glew.h>
 
 class TexturedModel : public Model
 {

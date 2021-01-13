@@ -1,4 +1,5 @@
-#include "tpCamera.h"
+#include "tpcamera.h"
+#include <stdio.h>
 
 tpCamera::tpCamera(void)
 {

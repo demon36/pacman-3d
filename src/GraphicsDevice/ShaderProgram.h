@@ -1,7 +1,7 @@
 #ifndef GraphicsDevice_h__
 #define GraphicsDevice_h__
 
-#include <gl/glew.h>
+#include <GL/glew.h>
 #include "Shaders/shader.hpp"
 
 

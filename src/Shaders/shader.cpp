@@ -11,7 +11,7 @@ using namespace std;
 #include <string.h>
 
 
-#include <gl\glew.h>
+#include <GL/glew.h>
 
 #include "shader.hpp"
 

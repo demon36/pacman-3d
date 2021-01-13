@@ -1,5 +1,5 @@
 #include "CollidableModel.h"
-
+#include <stdexcept>
 
 CollidableModel::CollidableModel(void)
 {

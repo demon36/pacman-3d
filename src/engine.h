@@ -5,8 +5,8 @@
 #include <queue>
 #include <utility>
 #include <memory>
-#include <gl/glew.h>
-#include <gl/glfw3.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <time.h>
 #include <Windows.h>
 #include <MMSystem.h>

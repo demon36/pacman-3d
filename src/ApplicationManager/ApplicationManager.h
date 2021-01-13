@@ -1,8 +1,8 @@
 #ifndef ApplicationManager_h__
 #define ApplicationManager_h__
 
-#include <gl/glew.h>
-#include <gl/glfw3.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <memory>
 #include "Renderer/Renderer.h"
 

@@ -5,7 +5,7 @@
 
 #include <glm/glm.hpp>
 #include <vector>
-#include <gl\glew.h>
+#include <GL/glew.h>
 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -14,8 +14,8 @@
 #include "TexturedModel.h"
 #include "ModelNode.h"
 #include "Texture/texture.h"
-#include "GraphicsDevice\ShaderProgram.h"
-#include "CollisionDetection\CollidableModel.h"
+#include "GraphicsDevice/ShaderProgram.h"
+#include "CollisionDetection/CollidableModel.h"
 
 //represents a scenegraph.
 class Model3D : public CollidableModel

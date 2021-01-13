@@ -1,5 +1,5 @@
 #include "TexturedModel.h"
-#include <gl\glew.h>
+#include <GL/glew.h>
 
 
 TexturedModel::TexturedModel(void)

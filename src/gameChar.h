@@ -1,7 +1,7 @@
 #pragma once
-#include "Scene\Model3D.h"
+#include "Scene/Model3D.h"
 #include "node.h"
-#include <glm\glm.hpp>
+#include <glm/glm.hpp>
 #define STEADY 0
 #define MOVING_ON_EDGE 1
 #define MOVING_ON_NODE 2

@@ -1,18 +1,18 @@
 #ifndef Renderer_h__
 #define Renderer_h__
 
-#include <gl/glew.h>
-#include <gl/glfw3.h>
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
-#include <gl/glut.h>
+#include <GL/glut.h>
 #include <memory>
 
 
 #include "Shaders/shader.hpp"
 #include "Model/Model.h"
 #include "EulerCamera/EulerCamera.h"
-#include "tpCamera/tpCamera.h"
+#include "tpCamera/tpcamera.h"
 #include "Texture/texture.h"
 #include "GraphicsDevice/ShaderProgram.h"
 #include "Scene/Model3D.h"
