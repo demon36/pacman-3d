@@ -1,4 +1,9 @@
 #include "engine.h"
+
+
+#include <ctime>
+#include <functional>
+
 engine::engine(void)
 {
 }
@@ -57,15 +62,15 @@ void engine::pacmanDown(){
 				if ((pacman->nextNode->south != NULL))
 				{
 					pacman->predecision = GLFW_KEY_DOWN;
-				}
-				if (pacman->nextNode == pacman->currentNode->north){
-					pacman->goSouth();
-					pacman->nextNode = pacman->currentNode;
-					pacman->currentNode = pacman->nextNode->north;
-					pacman->predecision = 0;
-				}
-		
-			}
+		}
+		if (pacman->nextNode == pacman->currentNode->north){
+			pacman->goSouth();
+			pacman->nextNode = pacman->currentNode;
+			pacman->currentNode = pacman->nextNode->north;
+			pacman->predecision = 0;
+		}
+
+	}
 	
 }
 void engine::pacmanRight(){
@@ -138,7 +143,7 @@ node* engine::PacmanisOnNode(glm::vec3 pos){
 			//printf("pacman  on node %f, %f \n", pos.x, pos.z);
 			pacman->currentNode = &nodes[i];
 			pacman->currentNode->index = i;
-			pacman->pos = pacman->currentNode->pos;
+			// pacman->pos = pacman->currentNode->pos;
 			pacman->state = MOVING_ON_NODE;
 			#ifdef WIN32
 			PlaySound(TEXT("intro.wav"), NULL, SND_ALIAS | SND_APPLICATION);
@@ -562,6 +567,15 @@ bool engine::sameDirection(node* current){
 	else
 		return false;
 }
+
+
+void benchmark(std::function<void()> fn, const std::string& desc){
+	const clock_t begin_time = clock();
+	fn();
+	clock_t ms = (clock() - begin_time) /  (CLOCKS_PER_SEC/1000);
+	printf("operation %s took %lums\n", desc.c_str(), ms);
+}
+
 void engine::update(){
 	if (lives > 0){
 		pacman->update();
@@ -777,8 +791,12 @@ void engine::NextGhostDirection(int ghostnum)
 	start.path.push_back(ghosts[ghostnum]->currentNode->index);
 	openNodes.push(start);
 
-	while (!openNodes.empty())
+	
+	int count = 0;
+	while (!openNodes.empty() && count < 50)
 	{
+		count++;
+		
 		
 		current = openNodes.front();
 		gn = current.path.size();//How many movement
@@ -804,7 +822,7 @@ void engine::NextGhostDirection(int ghostnum)
 					}
 				}
 		}
-		if (goalfound==false&&nodes[current.path.back()].west != NULL)
+		if (goalfound==false && nodes[current.path.back()].west != NULL)
 		{
 			PathFound = false;
 			index = nodes[current.path.back()].west->index;
@@ -827,7 +845,7 @@ void engine::NextGhostDirection(int ghostnum)
 				}
 			}
 		}
-		if (goalfound==false&&nodes[current.path.back()].east != NULL)
+		if (goalfound==false && nodes[current.path.back()].east != NULL)
 		{
 			PathFound = false;
 			index = nodes[current.path.back()].east->index;

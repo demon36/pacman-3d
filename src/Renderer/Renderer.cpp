@@ -212,6 +212,8 @@ void Renderer::Initialize()
 		glUniform3fv(EyePositionID,1, &mytpCamera->GetEyePosition()[0]);
 
 	//////////////////////////////////////////////////////////////////////////
+	int my_argc = 0;
+	glutInit(&my_argc, NULL);
 
 
 
