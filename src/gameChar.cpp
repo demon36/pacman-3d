@@ -65,7 +65,7 @@ void gameChar::update(){
 
 void gameChar::rotate(float target_angle){
 	target_angle *= 90.0f;
-	MMX = glm::translate(pos) * glm::rotate(cur_angle - target_angle ,glm::vec3(0.0f,1.0f,0.0f)) * glm::translate(-pos) * MMX;
+	MMX = glm::translate(pos) * glm::rotate(glm::radians(cur_angle - target_angle) ,glm::vec3(0.0f,1.0f,0.0f)) * glm::translate(-pos) * MMX;
 	cur_angle = target_angle;
 }
 

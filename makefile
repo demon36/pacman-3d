@@ -30,7 +30,7 @@ CFLAGS := -m$(ARCH) -Wall -g -std=c++17 -I$(INC_DIR) -I$(SRC_DIR) $(shell pkg-co
 CFLAGS_DEBUG := -DDEBUG
 CFLAGS_RELEASE := -O3 -w -DNDEBUG
 INC := #ex: -I./ext/thirdparty
-LIBS := -lGL -lGLEW -lglfw#ex: -L./ext/thirdparty/lib -lthirdpary
+LIBS := -lGL -lGLEW -lglfw -lassimp -lglut #ex: -L./ext/thirdparty/lib -lthirdpary
 
 LDFLAGS := -m$(ARCH)
 SO_LDFLAGS := -shared -Wl,-zdefs,-soname,$(SO_FILE).$(MAJOR_VERSION),-rpath,'$$ORIGIN'

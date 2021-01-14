@@ -4,6 +4,15 @@
 #include <glm/gtx/transform.hpp>
 #include "OBJLoader/objloader.hpp"
 
+glm::mat4 basic_scale(float x, float y, float z){
+	return glm::scale(glm::vec3(x, y ,z));
+}
+
+glm::mat4 basic_translate(float x, float y, float z){
+	return glm::translate(glm::vec3(x, y ,z));
+}
+
+
 Renderer::Renderer()
 {
     
@@ -31,7 +40,7 @@ void Renderer::Initialize()
 	maze = std::unique_ptr<Model3D>(new Model3D());
 	maze->LoadFromFile("data/models/maze/maze0.obj", true);
 	maze->Initialize();
-	//mazeM = glm::translate(-2.0f, 0.0f, 0.0f);
+	//mazeM = basic_translate(-2.0f, 0.0f, 0.0f);
 
 	//////////////////////////////////////////////////////////////////////////
 	gameOver =  "GAME OVER";
@@ -69,13 +78,13 @@ void Renderer::Initialize()
 	back = std::unique_ptr<Texture>(new Texture("data/textures/Side2.png", 0));
 	front = std::unique_ptr<Texture>(new Texture("data/textures/Side5.png", 0));
 	floorTexture = std::unique_ptr<Texture>(new Texture("data/textures/Side1.png", 0));
-	topM = glm::translate(0.0f, 45.0f, 0.0f) * glm::scale(30.0f, 30.0f, 30.0f) * glm::rotate(90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-	//bottomM = glm::translate(0.0f, -30.0f, 0.0f) * glm::scale(30.0f, 30.0f, 30.0f) * glm::rotate(90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-	leftM = glm::translate(0.0f, 15.0f, 30.0f) * glm::scale(30.0f, 30.0f, 30.0f);
-	rightM = glm::translate(0.0f, 15.0f, -30.0f) * glm::scale(30.0f, 30.0f, 30.0f);
-	backM = glm::translate(30.0f, 15.0f, 0.0f) * glm::scale(30.0f, 30.0f, 30.0f) * glm::rotate(90.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-	frontM = glm::translate(-30.0f, 15.0f, 0.0f) * glm::scale(30.0f, 30.0f, 30.0f) * glm::rotate(90.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-	floorM = glm::translate(0.0f, -0.01f, 0.0f)*glm::scale(30.0f, 30.0f, 30.0f)*glm::rotate(-90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+	topM = basic_translate(0.0f, 45.0f, 0.0f) * basic_scale(30.0f, 30.0f, 30.0f) * glm::rotate(glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	//bottomM = basic_translate(0.0f, -30.0f, 0.0f) * basic_scale(30.0f, 30.0f, 30.0f) * glm::rotate(glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	leftM = basic_translate(0.0f, 15.0f, 30.0f) * basic_scale(30.0f, 30.0f, 30.0f);
+	rightM = basic_translate(0.0f, 15.0f, -30.0f) * basic_scale(30.0f, 30.0f, 30.0f);
+	backM = basic_translate(30.0f, 15.0f, 0.0f) * basic_scale(30.0f, 30.0f, 30.0f) * glm::rotate(glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	frontM = basic_translate(-30.0f, 15.0f, 0.0f) * basic_scale(30.0f, 30.0f, 30.0f) * glm::rotate(glm::radians(90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	floorM = basic_translate(0.0f, -0.01f, 0.0f)*basic_scale(30.0f, 30.0f, 30.0f)*glm::rotate(glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f));
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -83,9 +92,9 @@ void Renderer::Initialize()
 	//////////////////////////////////////////////////////////////////////////
 	Raven.LoadModel("data/models/raven/raven.md2");
 	RavenAnimationState =Raven.StartAnimation(animType_t::fly);
-	RavenM = glm::rotate(-90.0f, glm::vec3(1.0f, 0.0f, 0.0f))* glm::translate(-1.0f, 0.0f, 0.0f) *  glm::scale(0.1f, 0.1f, 0.1f);
+	RavenM = glm::rotate(glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f))* basic_translate(-1.0f, 0.0f, 0.0f) *  basic_scale(0.1f, 0.1f, 0.1f);
 
-	//RavenM = glm::rotate(-90.0f, glm::vec3(1.0f, 0.0f, 0.0f))* glm::translate(-7.0f, -2.0f, 2.0f) *  glm::scale(0.1f, 0.1f, 0.1f);
+	//RavenM = glm::rotate(glm::radians(-90.0f), glm::vec3(1.0f, 0.0f, 0.0f))* basic_translate(-7.0f, -2.0f, 2.0f) *  basic_scale(0.1f, 0.1f, 0.1f);
 
 	//////////////////////////////////////////////////////////////////////////
 	
@@ -294,7 +303,7 @@ void Renderer::Draw()
 				mazeEngine->food->Render(&staticModelShader, glm::translate(mazeEngine->foodPosVector[i].second) * mazeEngine->foodMmx);
 
 		for(int i = 0; i < mazeEngine->lives ; i++)
-			mazeEngine->pacman->Render(&staticModelShader, glm::translate(-1.0f, 1.0f, 0.0f + (float)i) * glm::scale(mazeEngine->pacmanR,mazeEngine->pacmanR,mazeEngine->pacmanR));
+			mazeEngine->pacman->Render(&staticModelShader, basic_translate(-1.0f, 1.0f, 0.0f + (float)i) * basic_scale(mazeEngine->pacmanR,mazeEngine->pacmanR,mazeEngine->pacmanR));
 
 
 		animatedModelShader.UseProgram();

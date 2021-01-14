@@ -164,7 +164,8 @@ void engine::initFood(){
 	foodPosVector = std::vector<std::pair<bool,glm::vec3>>();
 	//food radius is 0.1f
 	foodR = 0.1f;//radii
-	foodMmx = glm::scale(foodR, foodR, foodR);
+	foodMmx = glm::scale(glm::vec3(foodR, foodR, foodR));
+
 	food = std::unique_ptr<gameChar>(new gameChar());
 	food->LoadFromFile("data/models/sphere/food.obj", true);
 	food->Initialize();
@@ -432,6 +433,7 @@ void engine::checkGhostCollision(){
 
 void engine::restartGame(){
 
+	auto temp_scale_mat = glm::scale(glm::vec3(0.35f, 0.35f, 0.35f));
 	//pacman->Initialize();
 	pacman->init();
 	pacman->pos = startNode->pos;
@@ -439,33 +441,35 @@ void engine::restartGame(){
 	pacman->currentNode->index = 0;
 	pacman->state = MOVING_ON_NODE;
 	pacmanR = 0.2f;
-	pacman->MMX = glm::translate(startNode->pos) * glm::scale(pacmanR, pacmanR, pacmanR)*glm::rotate(0.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	pacman->MMX = glm::translate(startNode->pos) * 
+		glm::scale(glm::vec3(pacmanR, pacmanR, pacmanR))*
+		glm::rotate(glm::radians(0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	pacman->stop();
 	
 	ghosts[0]->init();
 	ghosts[0]->pos = nodes[64].pos;
 	ghosts[0]->currentNode = &nodes[64];
 	ghosts[0]->currentNode->index = 64;
-	ghosts[0]->MMX = glm::translate(nodes[64].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[0]->MMX = glm::translate(nodes[64].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 
 	ghosts[1]->init();
 	ghosts[1]->pos = nodes[22].pos;
 	ghosts[1]->currentNode = &nodes[22];
 	ghosts[1]->currentNode->index = 22;
-	ghosts[1]->MMX = glm::translate(nodes[22].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[1]->MMX = glm::translate(nodes[22].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	ghosts[2]->init();
 	ghosts[2]->pos = nodes[49].pos;
 	ghosts[2]->currentNode = &nodes[49];
 	ghosts[2]->currentNode->index = 49;
-	ghosts[2]->MMX = glm::translate(nodes[49].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[2]->MMX = glm::translate(nodes[49].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 	ghosts[3]->init();
 	ghosts[3]->pos = nodes[8].pos;
 	ghosts[3]->currentNode = &nodes[8];
 	ghosts[3]->currentNode->index = 8;
-	ghosts[3]->MMX = glm::translate(nodes[8].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[3]->MMX = glm::translate(nodes[8].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 }
 
 void engine::updateFood(){
@@ -484,6 +488,8 @@ void engine::updateFood(){
 }
 
 void engine::initGameChars(){
+	auto temp_scale_mat = glm::scale(glm::vec3(0.35f, 0.35f, 0.35f));
+
 	pacman = std::unique_ptr<gameChar>(new gameChar());
 	pacman->LoadFromFile("data/models/sphere/sphere.obj", true);
 	pacman->Initialize();
@@ -492,7 +498,7 @@ void engine::initGameChars(){
 	pacman->currentNode->index = 0;
 	pacman->state = MOVING_ON_NODE;
 	pacmanR = 0.2f;
-	pacman->MMX = glm::translate(startNode->pos) * glm::scale(pacmanR, pacmanR, pacmanR);
+	pacman->MMX = glm::translate(startNode->pos) * glm::scale(glm::vec3(pacmanR, pacmanR, pacmanR));
 	
 	ghosts[0] = std::unique_ptr<gameChar>(new gameChar());
 	ghosts[0]->LoadFromFile("data/models/blinky/Pacman-Blinky.obj", true);
@@ -500,7 +506,7 @@ void engine::initGameChars(){
 	ghosts[0]->pos = nodes[64].pos;
 	ghosts[0]->currentNode = &nodes[64];
 	ghosts[0]->currentNode->index = 64;
-	ghosts[0]->MMX = glm::translate(nodes[64].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[0]->MMX = glm::translate(nodes[64].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 	ghosts[1] = std::unique_ptr<gameChar>(new gameChar());
 	ghosts[1]->LoadFromFile("data/models/pinky/Pacman-Blinky.obj", true);
@@ -508,7 +514,7 @@ void engine::initGameChars(){
 	ghosts[1]->pos = nodes[22].pos;
 	ghosts[1]->currentNode = &nodes[22];
 	ghosts[1]->currentNode->index = 22;
-	ghosts[1]->MMX = glm::translate(nodes[22].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[1]->MMX = glm::translate(nodes[22].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 	ghosts[2] = std::unique_ptr<gameChar>(new gameChar());
 	ghosts[2]->LoadFromFile("data/models/inky/Pacman-Blinky.obj", true);
@@ -516,7 +522,7 @@ void engine::initGameChars(){
 	ghosts[2]->pos = nodes[49].pos;
 	ghosts[2]->currentNode = &nodes[49];
 	ghosts[2]->currentNode->index = 49;
-	ghosts[2]->MMX = glm::translate(nodes[49].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[2]->MMX = glm::translate(nodes[49].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 
 	ghosts[3] = std::unique_ptr<gameChar>(new gameChar());
@@ -525,7 +531,7 @@ void engine::initGameChars(){
 	ghosts[3]->pos = nodes[8].pos;
 	ghosts[3]->currentNode = &nodes[8];
 	ghosts[3]->currentNode->index = 8;
-	ghosts[3]->MMX = glm::translate(nodes[8].pos) * glm::scale(0.35f, 0.35f, 0.35f)*glm::rotate(-180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	ghosts[3]->MMX = glm::translate(nodes[8].pos) * temp_scale_mat*glm::rotate(glm::radians(-180.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 	
 
 }
