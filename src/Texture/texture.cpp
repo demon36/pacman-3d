@@ -1,5 +1,5 @@
 #include "texture.h"
-#include "Texture/Texture Loader/stb_image.h"
+#include "Texture/TextureLoader/stb_image.h"
 #include <iostream>
 using namespace std;
 

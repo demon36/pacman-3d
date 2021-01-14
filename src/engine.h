@@ -8,9 +8,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <time.h>
+#ifdef WIN32
+
 #include <Windows.h>
 #include <MMSystem.h>
 //# pragma comment(lib,"winmm.lib")
+
+#endif
 
 #define E 0.001
 struct state{

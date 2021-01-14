@@ -140,7 +140,9 @@ node* engine::PacmanisOnNode(glm::vec3 pos){
 			pacman->currentNode->index = i;
 			pacman->pos = pacman->currentNode->pos;
 			pacman->state = MOVING_ON_NODE;
-			//PlaySound(TEXT("intro.wav"), NULL, SND_ALIAS | SND_APPLICATION);
+			#ifdef WIN32
+			PlaySound(TEXT("intro.wav"), NULL, SND_ALIAS | SND_APPLICATION);
+			#endif
 			return pacman->currentNode;
 
 		}
@@ -424,7 +426,9 @@ void engine::checkGhostCollision(){
 		if (getXZDistance(pacman->pos, ghosts[i]->pos) <  (0.35f * 0.8f) + pacmanR / 2.0){
 			lives--;
 			restartGame();
+			#ifdef WIN32
 			PlaySound(TEXT("death.wav"), NULL, SND_SYNC);
+			#endif
 		}
 	}
 	
@@ -478,7 +482,9 @@ void engine::updateFood(){
 		if (temp < foodR + pacmanR)
 		{
 			foodPosVector.erase(foodPosVector.begin() + i);
+			#ifdef WIN32
 			PlaySound(TEXT("eating.wav"), NULL, SND_ASYNC | SND_NOSTOP);
+			#endif
 			intscore++;
 			score = "SCORE: " + std::to_string(intscore);
 		}

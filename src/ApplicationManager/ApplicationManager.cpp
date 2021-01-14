@@ -86,7 +86,9 @@ void ApplicationManager::InitializeComponents()
 
 	// Initialize primitives/models data (send data to OpenGL buffers)
 	mRenderer->Initialize();
+	#ifdef WIN32
 	PlaySound(TEXT("intro.wav"), NULL, SND_ASYNC);
+	#endif
 }
 
 void ApplicationManager::StartMainLoop()

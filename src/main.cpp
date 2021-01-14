@@ -1,4 +1,4 @@
-#include "Application Manager/ApplicationManager.h"
+#include "ApplicationManager/ApplicationManager.h"
 
 int main(void)
 {
@@ -11,12 +11,17 @@ int main(void)
 	
 	// Initialize the window providing its width and height
 
+#ifdef WIN32
 	HWND desktop = GetDesktopWindow();
 	RECT screensize;
 	GetWindowRect(desktop, &screensize);
-
 	int WindowSizeWidth = screensize.right;//width;
 	int WindowSizeHeight = screensize.bottom;// height;
+#else
+	int WindowSizeWidth = 1920;
+	int WindowSizeHeight = 1080;// height;
+#endif
+
 	if (appManager->InitalizeApplication(WindowSizeWidth, WindowSizeHeight) == true)
 	{
 		appManager->StartMainLoop();
