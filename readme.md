@@ -3,7 +3,7 @@
 
 
 #### contributors:
-[demon36](https://github.com/demon36), [sarao19](https://github.com/sarao19), nouran el sherif
+[demon36](https://github.com/demon36), [sarao19](https://github.com/sarao19), [nouran el sherif](https://github.com/nouran-elsherif)
 
 #### todo:
 - [x] port to linux
